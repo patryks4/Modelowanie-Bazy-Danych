@@ -1,4 +1,4 @@
 Patryk Sieczka patryksieczka4@gmail.com 1IZ21A
 Temat: Modelowanie Bazy Danych.
-Java, JUnit, Maven, JavaFX
+Java, JUnit, Maven, HTMl, CSS, JavaScript
 Praca inżynierska: „Projekt i implementacja aplikacji internetowej Futbolowa Liga Fantasy”

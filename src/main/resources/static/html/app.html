@@ -5,6 +5,13 @@
     <title>App</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/item.css">
+    <link rel="stylesheet" href="../css/svgElements.css">
+    <script src="../js/util.js"></script>
+    <script src="../js/EntityInfo.js"></script>
+    <script src="../js/EntityView.js"></script>
+    <script src="../js/item.js"></script>
+
 
 </head>
 <body>
@@ -13,7 +20,7 @@
         <div class='menu'>
         <button>Menu</button>
         <button>Delete</button>
-        <button>Add row</button>
+        <button id="addRow">Add row</button>
         </div>
     </div>
     <div class="main-container">
@@ -30,7 +37,7 @@
             </ol>
         </div>
         <div class="diagram-container">
-    <svg class="test-svg">
+    <svg id="svgTest"  class="test-svg">
 
     </svg>
         </div>

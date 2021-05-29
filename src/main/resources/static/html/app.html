@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>App</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Oswald&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/item.css">
     <link rel="stylesheet" href="../css/svgElements.css">
+    <script src="../js/RelationView.js"></script>
     <script src="../js/util.js"></script>
     <script src="../js/EntityInfo.js"></script>
     <script src="../js/EntityView.js"></script>
     <script src="../js/MovingElement.js"></script>
-    <script src="../js/item.js"></script>
+    <script src="../js/App.js"></script>
 
 
 </head>
@@ -28,13 +30,13 @@
         <div class="side-menu">
             <ol class="side-list">
                 <li class="side-option side-text">Entity</li>
-                <li class="side-option"><img  class="side-img" src="../img/Entity.svg"></li>
+                <li class="side-option"><img  id="entity-img" class="side-img" src="../img/Entity.svg"></li>
                 <li class="side-option side-text">One-To-One</li>
-                <li class="side-option"><img class="side-img" src="../img/OneToOne.svg"></li>
+                <li class="side-option"><img id="oto-img" class="side-img" src="../img/OneToOne.svg"></li>
                 <li class="side-option side-text">One-To-Many</li>
-                <li class="side-option"><img class="side-img" src="../img/OneToMany.svg"></li>
+                <li class="side-option"><img id="otm-img" class="side-img" src="../img/OneToMany.svg"></li>
                 <li class="side-option side-text">Many-To-Many</li>
-                <li class="side-option"><img class="side-img" src="../img/ManyToMany.svg"></li>
+                <li class="side-option"><img id="mtm-img" class="side-img" src="../img/ManyToMany.svg"></li>
             </ol>
         </div>
         <div class="diagram-container">

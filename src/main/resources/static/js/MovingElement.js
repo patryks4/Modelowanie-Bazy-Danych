@@ -1,9 +1,26 @@
-
+let svgType;
 function switchOnMoving(event) {
     if (event.button === 0){
         let dragItem = document.createElement("img");
         dragItem.id = "drag-img";
-        dragItem.src = "../img/Entity.svg";
+        switch (event.target.id){
+            case "entity-img":
+                dragItem.src = "../img/Entity.svg";
+                svgType = "entity";
+                break;
+            case "oto-img":
+                dragItem.src = "../img/OneToOne.svg";
+                svgType = "oto";
+                break;
+            case "otm-img":
+                dragItem.src = "../img/OneToMany.svg";
+                svgType = "otm";
+                break;
+            case "mtm-img":
+                dragItem.src = "../img/ManyToMany.svg";
+                svgType = "mtm";
+                break;
+        }
         dragItem.draggable = false;
         dragItem.classList.add("dragging-img");
         document.getElementsByTagName("body")[0].appendChild(dragItem);
@@ -39,7 +56,20 @@ function switchOffMoving(event) {
         isMoving = false;
         let dragItem = document.getElementById("drag-img");
         dragItem.remove();
-        createEntity(event);
+        switch (svgType){
+            case "entity":
+               createEntity(event)
+                break;
+            case "oto":
+                createRelation(event);
+                break;
+            case "otm":
+                createRelation(event);
+                break;
+            case "mtm":
+                createRelation(event);
+                break;
+        }
     }
 }
 

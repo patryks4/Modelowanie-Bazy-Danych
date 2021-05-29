@@ -3,8 +3,8 @@ class EntityView {
     constructor(x, y, tableId) {
         this.x = x;
         this.y = y;
-        this.width = 100;
-        this.rowHeight =20;
+        this.width = 200;
+        this.rowHeight =25;
         this.tableBorder = createSVGElement("rect");
         this.entityInfo = new EntityInfo(tableId, 1);
     }
@@ -17,10 +17,10 @@ class EntityView {
         entityGroup.addEventListener("click",  (event) => {
             addRow = true;
             if (event.target.parentNode.hasAttribute("id")) {
-               selectedEntity = entityTab.get(event.target.parentNode.id)
+               selectedEntity = entitiesMap.get(event.target.parentNode.id)
             }
             else {
-                selectedEntity = entityTab.get(event.target.parentNode.parentNode.id);
+                selectedEntity = entitiesMap.get(event.target.parentNode.parentNode.id);
             }
         });
         let entityName = this.createNamesRow();
@@ -48,15 +48,23 @@ class EntityView {
 
     createNamesRow() {
         let namesRow = createSVGElement("g");
-        const keyEnd = this.x + 20;
-        const typeStart = this.x +60;
+        const keyEnd = this.x + 50;
+        const typeStart = this.x +150;
         const startX = this.x;
         const startY = this.y + this.rowHeight;
         namesRow.appendChild(this.createHorizontalLine(startX, startY, this.width))
-        namesRow.appendChild(this.createVerticalLine(keyEnd, startY, this.rowHeight));
-        namesRow.appendChild(this.createVerticalLine(typeStart, startY, this.rowHeight));
         namesRow.classList.add("entity-name");
+        namesRow.appendChild(this.textElement(startX + 50,startY,"Table Name"));
         return namesRow;
+    }
+
+    textElement(x, y, text) {
+        let textField = createSVGElement("text");
+        textField.setAttribute("x",x);
+        textField.setAttribute("y",y-5);
+        textField.textContent = text;
+        textField.classList.add("entity-text")
+        return textField;
     }
 
     createHorizontalLine(x,y,width){

@@ -38,7 +38,7 @@ body{
     overflow: auto;
 }
 
-.test-svg {
+.svg-container {
     height: 1500px;
     width: 2000px;
     background-image: url("../grid.gif") ;

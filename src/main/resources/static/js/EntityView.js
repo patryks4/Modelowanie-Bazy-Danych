@@ -56,7 +56,7 @@ class EntityView {
         let namesRow = createSVGElement("g");
         const startX = this.x;
         const startY = this.y + this.rowHeight;
-        namesRow.appendChild(this.createHorizontalLine(startX, startY, this.width))
+        namesRow.appendChild(createHorizontalLine(startX, startY, this.width))
         namesRow.classList.add("entity-name");
         namesRow.appendChild(this.textElement(startX + 50,startY,this.textType.entityName));
         return namesRow;
@@ -108,25 +108,6 @@ class EntityView {
         return textField;
     }
 
-    createHorizontalLine(x,y,width){
-        let line = createSVGElement("line");
-        line.setAttribute("x1",x);
-        line.setAttribute("y1",y);
-        line.setAttribute("x2",x+width);
-        line.setAttribute("y2",y);
-        line.classList.add("entity");
-        return line;
-
-    }
-    createVerticalLine(x,y, height){
-        let line = createSVGElement("line");
-        line.setAttribute("x1",x);
-        line.setAttribute("y1",y);
-        line.setAttribute("x2",x);
-        line.setAttribute("y2", y - height);
-        line.classList.add("entity");
-        return line;
-    }
 
     addRow() {
         let tableHeight = this.tableBorder.getAttribute("height");

@@ -1,5 +1,10 @@
 class EntityView {
+    textType = {entityName: "name",
+        key:"key",
+        attrName: "attr-name",
+        attrType:"attr-type",
 
+    }
     constructor(x, y, tableId) {
         this.x = x;
         this.y = y;
@@ -26,7 +31,7 @@ class EntityView {
         let entityName = this.createNamesRow();
         entityGroup.appendChild(this.createBorder());
         entityGroup.appendChild(entityName);
-        entityGroup.appendChild(this.createTextRow("PK"))
+        entityGroup.appendChild(this.createTextRow())
         return entityGroup;
 
     }
@@ -53,28 +58,53 @@ class EntityView {
         const startY = this.y + this.rowHeight;
         namesRow.appendChild(this.createHorizontalLine(startX, startY, this.width))
         namesRow.classList.add("entity-name");
-        namesRow.appendChild(this.textElement(startX + 50,startY,"Table Name"));
+        namesRow.appendChild(this.textElement(startX + 50,startY,this.textType.entityName));
         return namesRow;
     }
 
-    createTextRow(key) {
+    createTextRow() {
         const startY = this.y + parseInt(this.tableBorder.getAttribute("height"));
-        const startX = this.x +5;
+        const startX = this.x + 5;
         const nameStart = this.x + 40;
-        const typeStart = this.x +150;
+        const typeStart = this.x + 150;
         let textRow = createSVGElement("g");
-        textRow.appendChild(this.textElement(startX, startY, key));
-        textRow.appendChild(this.textElement(nameStart, startY, "name"));
-        textRow.appendChild(this.textElement(typeStart, startY, "type"));
+        textRow.appendChild(this.textElement(startX, startY, this.textType.key));
+        textRow.appendChild(this.textElement(nameStart, startY,this.textType.attrName));
+        textRow.appendChild(this.textElement(typeStart, startY,this.textType.attrType));
         return textRow;
     }
 
-    textElement(x, y, text) {
+    textElement(x, y, type) {
+        let text;
+        if (this.entityInfo.numberOfRows === 1 && type==="key") {
+            text = "PK";
+        }
+        else
+        {
+            switch (type){
+                case 'name':
+                    text = "Table Name";
+                    break;
+                case 'key':
+                    text = "+";
+                    break;
+                case 'attr-name':
+                    text = "name";
+                    console.log("name");
+                    break;
+                case 'attr-type':
+                    text = "type";
+                    break;
+            }
+        }
+
         let textField = createSVGElement("text");
+        textField.id = this.entityInfo.entityViewId + "-" + type + "-" + (this.entityInfo.numberOfRows -1);
         textField.setAttribute("x",x);
         textField.setAttribute("y",y-5);
         textField.textContent = text;
-        textField.classList.add("entity-text")
+        textField.classList.add("entity-text");
+
         return textField;
     }
 
@@ -103,7 +133,8 @@ class EntityView {
         this.entityInfo.numberOfRows++;
         tableHeight = parseInt(tableHeight) + this.rowHeight;
         this.tableBorder.setAttribute("height", tableHeight);
-         document.getElementById(this.entityInfo.entityViewId).appendChild(this.createTextRow(" "));
+         document.getElementById(this.entityInfo.entityViewId).appendChild(this.createTextRow());
     }
+
 
 }

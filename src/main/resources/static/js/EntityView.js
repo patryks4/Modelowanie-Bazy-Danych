@@ -13,7 +13,7 @@ class EntityView {
         let entityGroup = createSVGElement("g");
         entityGroup.id = this.entityInfo.entityViewId;
         entityGroup.classList.add("draggable");
-
+        this.entityInfo.numberOfRows =1;
         entityGroup.addEventListener("click",  (event) => {
             addRow = true;
             if (event.target.parentNode.hasAttribute("id")) {
@@ -26,6 +26,7 @@ class EntityView {
         let entityName = this.createNamesRow();
         entityGroup.appendChild(this.createBorder());
         entityGroup.appendChild(entityName);
+        entityGroup.appendChild(this.createTextRow("PK"))
         return entityGroup;
 
     }
@@ -48,14 +49,24 @@ class EntityView {
 
     createNamesRow() {
         let namesRow = createSVGElement("g");
-        const keyEnd = this.x + 50;
-        const typeStart = this.x +150;
         const startX = this.x;
         const startY = this.y + this.rowHeight;
         namesRow.appendChild(this.createHorizontalLine(startX, startY, this.width))
         namesRow.classList.add("entity-name");
         namesRow.appendChild(this.textElement(startX + 50,startY,"Table Name"));
         return namesRow;
+    }
+
+    createTextRow(key) {
+        const startY = this.y + parseInt(this.tableBorder.getAttribute("height"));
+        const startX = this.x +5;
+        const nameStart = this.x + 40;
+        const typeStart = this.x +150;
+        let textRow = createSVGElement("g");
+        textRow.appendChild(this.textElement(startX, startY, key));
+        textRow.appendChild(this.textElement(nameStart, startY, "name"));
+        textRow.appendChild(this.textElement(typeStart, startY, "type"));
+        return textRow;
     }
 
     textElement(x, y, text) {
@@ -89,7 +100,10 @@ class EntityView {
 
     addRow() {
         let tableHeight = this.tableBorder.getAttribute("height");
+        this.entityInfo.numberOfRows++;
         tableHeight = parseInt(tableHeight) + this.rowHeight;
-        this.tableBorder.setAttribute("height", tableHeight)
+        this.tableBorder.setAttribute("height", tableHeight);
+         document.getElementById(this.entityInfo.entityViewId).appendChild(this.createTextRow(" "));
     }
+
 }

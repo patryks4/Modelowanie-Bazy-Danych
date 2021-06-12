@@ -1,0 +1,39 @@
+.dragging-img {
+    height: 50px;
+    width: 100px;
+    position: absolute;
+    display: none;
+    cursor: move;
+
+}
+
+.draggable {
+    cursor: move;
+}
+
+.entity {
+    stroke-width: 2;
+    stroke: black;
+    fill: white;
+}
+
+.entity-text {
+    font: normal 14px Lato;
+    fill: black;
+    stroke: none;
+}
+
+.edit-field {
+    height: 25px;
+    width: 100px;
+    position: absolute;
+    display: block;
+    background: white;
+    border: black 2px;
+}
+
+.moving-field {
+    stroke: none;
+    fill: white;
+    opacity: 0;
+}

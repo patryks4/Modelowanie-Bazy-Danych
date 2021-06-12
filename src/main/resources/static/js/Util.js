@@ -40,3 +40,13 @@ function createVerticalLine(x,y, height){
     line.classList.add("entity");
     return line;
 }
+
+function createDiagonalLine(x1,y1,x2,y2){
+    let line = createSVGElement("line");
+    line.setAttribute("x1",x1);
+    line.setAttribute("y1",y1);
+    line.setAttribute("x2",x2);
+    line.setAttribute("y2", y2);
+    line.classList.add("entity");
+    return line;
+}

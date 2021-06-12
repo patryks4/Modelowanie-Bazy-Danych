@@ -33,10 +33,9 @@ function createEntity(event) {
     entitiesMap.set(key, entityView);
 }
 
-function createRelation(event) {
+function createRelation(event,relationType) {
     let position = getMousePosition(event);
-
-    let relationView = new RelationView(position.x, position.y, "relation-0");
+    let relationView = new RelationView(position.x, position.y,relationType, "relation-0");
     let relation = relationView.createBody();
     document.getElementById("svg-view").appendChild(relation);
     makeDraggable(relation);

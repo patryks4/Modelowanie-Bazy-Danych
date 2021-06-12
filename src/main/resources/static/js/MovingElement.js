@@ -61,13 +61,13 @@ function switchOffMoving(event) {
                createEntity(event)
                 break;
             case "oto":
-                createRelation(event);
+                createRelation(event,svgType);
                 break;
             case "otm":
-                createRelation(event);
+                createRelation(event,svgType);
                 break;
             case "mtm":
-                createRelation(event);
+                createRelation(event,svgType);
                 break;
         }
     }

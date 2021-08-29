@@ -8,19 +8,30 @@ function getMousePosition(event) {
 }
 
 function addEditField(event) {
+    console.log("edit field");
+    console.log(event.target.id);
+    selectedText = document.getElementById(event.target.id);
     let tDiv = document.createElement("div");
+    tDiv.setAttribute("id", "edit-text");
     tDiv.setAttribute("contenteditable", "true");
     tDiv.classList.add("edit-field");
     tDiv.style.left=(event.pageX -50)+"px";
     tDiv.style.top=(event.pageY-12)+"px";
     document.getElementsByTagName("body")[0].appendChild(tDiv);
-    console.log("edit field");
-    console.log(event.target.width);
-    console.log(event.target.getAttribute("width"));
-
+    window.addEventListener("click", switchText);
 
 }
 
+function switchText(event) {
+    let textEditDiv = document.getElementById('edit-text');
+    if (event.target.id !== textEditDiv.id)
+    {
+        selectedText.textContent = textEditDiv.textContent;
+        textEditDiv.parentNode.removeChild(textEditDiv);
+        window.removeEventListener('click', switchText);
+    }
+
+}
 function createHorizontalLine(x,y,width){
     let line = createSVGElement("line");
     line.setAttribute("x1",x);

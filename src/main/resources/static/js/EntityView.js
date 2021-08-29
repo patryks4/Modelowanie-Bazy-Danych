@@ -104,6 +104,7 @@ class EntityView {
         textField.setAttribute("y",y-5);
         textField.textContent = text;
         textField.classList.add("entity-text");
+        textField.addEventListener('dblclick', addEditField);
 
         return textField;
     }

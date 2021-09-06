@@ -37,3 +37,9 @@
     fill: white;
     opacity: 0;
 }
+
+.editable-stroke {
+    stroke-dasharray: 2px;
+    stroke: black;
+    fill: none;
+}

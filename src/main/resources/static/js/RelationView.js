@@ -8,6 +8,7 @@ class RelationView{
 
     createBody() {
         let relationGroup = createSVGElement("g");
+        let editableStroke = this.createEditStroke(15,30, 180, 60)
         let movingField = createSVGElement('rect');
         movingField.setAttribute("x", this.x -10);
         movingField.setAttribute("y", this.y - 25);
@@ -16,6 +17,7 @@ class RelationView{
         movingField.classList.add("draggable");
         movingField.classList.add("moving-field");
         relationGroup.classList.add("draggable");
+        relationGroup.appendChild(editableStroke)
         relationGroup.appendChild(movingField);
         switch (this.relationType){
             case "oto":
@@ -31,6 +33,17 @@ class RelationView{
         return relationGroup;
     }
 
+    createEditStroke(offSetX, offSetY, width, height){
+        let editStrokeGroup = createSVGElement("g");
+        let editStroke = createSVGElement('rect');
+        editStroke.setAttribute("x", this.x -offSetX);
+        editStroke.setAttribute("y", this.y - offSetY);
+        editStroke.setAttribute("width", width);
+        editStroke.setAttribute("height", height);
+        editStrokeGroup.classList.add("editable-stroke");
+        editStrokeGroup.appendChild(editStroke)
+        return editStrokeGroup;
+    }
     relationOtO() {
         let relationOneToOne = createSVGElement("g");
         let line = createHorizontalLine(this.x,this.y,150);

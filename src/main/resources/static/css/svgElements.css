@@ -43,3 +43,9 @@
     stroke: black;
     fill: none;
 }
+
+.stretch-point{
+    stroke-dasharray: none;
+    stroke: black;
+    fill: white;
+}

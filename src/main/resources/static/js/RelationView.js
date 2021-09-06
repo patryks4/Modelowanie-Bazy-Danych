@@ -4,6 +4,8 @@ class RelationView{
         this.y = y;
         this.relationType = relationType;
         this.relationId = relationId;
+        this.width = 170;
+        this.height = 50;
     }
 
     createBody() {
@@ -36,13 +38,34 @@ class RelationView{
     createEditStroke(offSetX, offSetY, width, height){
         let editStrokeGroup = createSVGElement("g");
         let editStroke = createSVGElement('rect');
+        let leftStretchPoint = this.createStretchPoint(offSetX+5)
+        let rightStretchPoint = this.createStretchPoint(offSetX - this.width - 5)
         editStroke.setAttribute("x", this.x -offSetX);
         editStroke.setAttribute("y", this.y - offSetY);
         editStroke.setAttribute("width", width);
         editStroke.setAttribute("height", height);
         editStrokeGroup.classList.add("editable-stroke");
         editStrokeGroup.appendChild(editStroke)
+        editStrokeGroup.appendChild(leftStretchPoint)
+        editStrokeGroup.appendChild(rightStretchPoint)
         return editStrokeGroup;
+    }
+
+    createStretchPoint(offSetX){
+        let stretchPoint = createSVGElement('rect');
+        stretchPoint.classList.add("stretch-point")
+        stretchPoint.setAttribute("x", this.x - offSetX);
+        stretchPoint.setAttribute("y", this.y - 5);
+        stretchPoint.setAttribute("width", 10);
+        stretchPoint.setAttribute("height", 10);
+        stretchPoint.addEventListener('mousedown', startStretch);
+        stretchPoint.addEventListener('mousemove', stretch);
+        stretchPoint.addEventListener('mouseup', endStretch);
+        return stretchPoint;
+    }
+
+    stretchRelation(){
+
     }
     relationOtO() {
         let relationOneToOne = createSVGElement("g");

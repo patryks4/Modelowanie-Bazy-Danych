@@ -4,18 +4,18 @@ class RelationView{
         this.y = y;
         this.relationType = relationType;
         this.relationId = relationId;
-        this.width = 170;
+        this.width = 150;
         this.height = 50;
     }
 
     createBody() {
         let relationGroup = createSVGElement("g");
         let movingField = createSVGElement('rect');
-        let leftEditPoint = this.createStretchPoint(15)
-        let rightEditPoint = this.createStretchPoint(-this.width + 15)
-        movingField.setAttribute("x", this.x -10);
+        let leftEditPoint = this.createStretchPoint(10)
+        let rightEditPoint = this.createStretchPoint(-this.width)
+        movingField.setAttribute("x", this.x);
         movingField.setAttribute("y", this.y - 25);
-        movingField.setAttribute("width", 170);
+        movingField.setAttribute("width", this.width);
         movingField.setAttribute("height", 50);
         movingField.classList.add("draggable");
         movingField.classList.add("moving-field");
@@ -50,7 +50,7 @@ class RelationView{
 
     relationOtO() {
         let relationOneToOne = createSVGElement("g");
-        let line = createHorizontalLine(this.x,this.y,150);
+        let line = createHorizontalLine(this.x,this.y,this.width);
         line.classList.add("draggable");
         let verticalLeftLine=createVerticalLine(this.x+10, this.y +15, 30);
         let verticalRightLine = createVerticalLine(this.x + 140, this.y + 15, 30);
@@ -63,7 +63,7 @@ class RelationView{
     }
     relationOtM() {
         let relationOneToMany = createSVGElement("g");
-        let line = createHorizontalLine(this.x,this.y,150);
+        let line = createHorizontalLine(this.x,this.y,this.width);
         line.classList.add("draggable");
         let verticalLeftLine=createVerticalLine(this.x+10, this.y +15, 30);
         let verticalRightTopLine = createDiagonalLine(this.x + 130, this.y, this.x +145, this.y - 12);
@@ -78,7 +78,7 @@ class RelationView{
     }
     relationMtM() {
         let relationManyToMany = createSVGElement("g");
-        let line = createHorizontalLine(this.x,this.y,150);
+        let line = createHorizontalLine(this.x,this.y,this.width);
         let verticalLeftTopLine = createDiagonalLine(this.x + 15, this.y, this.x, this.y - 12);
         let verticalLeftBottomLine = createDiagonalLine(this.x + 15, this.y, this.x, this.y + 12);
         let verticalRightTopLine = createDiagonalLine(this.x + 135, this.y, this.x +150, this.y - 12);

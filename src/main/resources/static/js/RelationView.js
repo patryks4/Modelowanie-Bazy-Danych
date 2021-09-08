@@ -10,8 +10,9 @@ class RelationView{
 
     createBody() {
         let relationGroup = createSVGElement("g");
-        let editableStroke = this.createEditStroke(15,30, 180, 60)
         let movingField = createSVGElement('rect');
+        let leftEditPoint = this.createStretchPoint(15)
+        let rightEditPoint = this.createStretchPoint(-this.width + 15)
         movingField.setAttribute("x", this.x -10);
         movingField.setAttribute("y", this.y - 25);
         movingField.setAttribute("width", 170);
@@ -19,7 +20,8 @@ class RelationView{
         movingField.classList.add("draggable");
         movingField.classList.add("moving-field");
         relationGroup.classList.add("draggable");
-        relationGroup.appendChild(editableStroke)
+        relationGroup.appendChild(leftEditPoint)
+        relationGroup.appendChild(rightEditPoint)
         relationGroup.appendChild(movingField);
         switch (this.relationType){
             case "oto":
@@ -33,22 +35,6 @@ class RelationView{
                 break;
         }
         return relationGroup;
-    }
-
-    createEditStroke(offSetX, offSetY, width, height){
-        let editStrokeGroup = createSVGElement("g");
-        let editStroke = createSVGElement('rect');
-        let leftStretchPoint = this.createStretchPoint(offSetX+5)
-        let rightStretchPoint = this.createStretchPoint(offSetX - this.width - 5)
-        editStroke.setAttribute("x", this.x -offSetX);
-        editStroke.setAttribute("y", this.y - offSetY);
-        editStroke.setAttribute("width", width);
-        editStroke.setAttribute("height", height);
-        editStrokeGroup.classList.add("editable-stroke");
-        editStrokeGroup.appendChild(editStroke)
-        editStrokeGroup.appendChild(leftStretchPoint)
-        editStrokeGroup.appendChild(rightStretchPoint)
-        return editStrokeGroup;
     }
 
     createStretchPoint(offSetX){

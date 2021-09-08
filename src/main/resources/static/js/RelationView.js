@@ -53,20 +53,15 @@ class RelationView{
 
     createStretchPoint(offSetX){
         let stretchPoint = createSVGElement('rect');
-        stretchPoint.classList.add("stretch-point")
+        stretchPoint.classList.add("stretch-point","stretchable")
         stretchPoint.setAttribute("x", this.x - offSetX);
         stretchPoint.setAttribute("y", this.y - 5);
         stretchPoint.setAttribute("width", 10);
         stretchPoint.setAttribute("height", 10);
-        stretchPoint.addEventListener('mousedown', startStretch);
-        stretchPoint.addEventListener('mousemove', stretch);
-        stretchPoint.addEventListener('mouseup', endStretch);
         return stretchPoint;
     }
 
-    stretchRelation(){
 
-    }
     relationOtO() {
         let relationOneToOne = createSVGElement("g");
         let line = createHorizontalLine(this.x,this.y,150);

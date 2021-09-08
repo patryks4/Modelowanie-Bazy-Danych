@@ -11,6 +11,9 @@
     cursor: move;
 }
 
+.stretchable{
+    cursor: pointer;
+}
 .entity {
     stroke-width: 2;
     stroke: black;

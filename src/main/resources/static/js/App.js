@@ -41,6 +41,7 @@ function createRelation(event,relationType) {
     let relationView = new RelationView(position.x, position.y,relationType, "relation-0");
     let relation = relationView.createBody();
     document.getElementById("svg-view").appendChild(relation);
+    relation.addEventListener('dblclick',changeVisibility)
     makeDraggable(relation);
 }
 
@@ -53,9 +54,6 @@ function createPreviewLine(event) {
     window.addEventListener("mousemove",stretchLine)
     window.addEventListener("mouseup", switchOffStretching);
 }
-
-
-
 
 
 

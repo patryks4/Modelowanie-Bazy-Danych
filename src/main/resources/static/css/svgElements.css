@@ -46,3 +46,9 @@
     stroke: black;
     fill: white;
 }
+
+.preview-line{
+    stroke: blue;
+    stroke-width: 2;
+    stroke-dasharray: 5 5;
+}

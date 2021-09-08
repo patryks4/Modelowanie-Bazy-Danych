@@ -115,3 +115,17 @@ function makeDraggable(element) {
 
     }
 }
+
+function stretchLine(event){
+    if (isStretching) {
+        let mousePos = getMousePosition(event);
+        currentPreviewLine.firstChild.setAttribute("x2", mousePos.x);
+        currentPreviewLine.firstChild.setAttribute("y2", mousePos.y);
+    }
+}
+
+function switchOffStretching() {
+    isStretching = false;
+    window.removeEventListener("mousemove",stretchLine)
+    window.removeEventListener("mouseup", switchOffStretching);
+}

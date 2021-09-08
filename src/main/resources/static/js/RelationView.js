@@ -44,6 +44,7 @@ class RelationView{
         stretchPoint.setAttribute("y", this.y - 5);
         stretchPoint.setAttribute("width", 10);
         stretchPoint.setAttribute("height", 10);
+        stretchPoint.addEventListener("mousedown", createPreviewLine);
         return stretchPoint;
     }
 

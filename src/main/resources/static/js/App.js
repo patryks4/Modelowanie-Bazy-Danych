@@ -4,6 +4,9 @@ let isMoving = false;
 let addRow = false;
 let selectedEntity;
 let entitiesMap = new Map;
+let selectedText;
+let isStretching = false;
+let currentPreviewLine;
 function createSVGElement(name) {
     return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
@@ -41,6 +44,15 @@ function createRelation(event,relationType) {
     makeDraggable(relation);
 }
 
+function createPreviewLine(event) {
+    let mousePos = getMousePosition(event)
+    let previewLine = new PreviewLine(mousePos.x,mousePos.y)
+    currentPreviewLine = previewLine.createBody(1)
+    document.getElementById("svg-view").appendChild(currentPreviewLine);
+    isStretching = true;
+    window.addEventListener("mousemove",stretchLine)
+    window.addEventListener("mouseup", switchOffStretching);
+}
 
 
 

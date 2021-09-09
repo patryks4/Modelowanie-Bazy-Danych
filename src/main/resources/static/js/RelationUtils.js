@@ -35,6 +35,7 @@ function hide(element) {
 function reDrawRelation(event) {
     let mousePosition = getMousePosition(event);
     reDrawMainLine(mousePosition)
+    redrawEditPoint(mousePosition)
 
 }
 
@@ -80,4 +81,18 @@ function calcMiddlePoint(line){
     console.log("X2:" + Number.parseInt(line.getAttribute("x2")))
     console.log("MIddlr : " + ((Number.parseInt(line.getAttribute("x1")) + Number.parseInt(line.getAttribute("x2"))) / 2))
     return (Number.parseInt(line.getAttribute("x1")) + Number.parseInt(line.getAttribute("x2"))) / 2
+}
+
+
+function redrawEditPoint(mousePosition) {
+    let line = selectedRelation.lastChild.childNodes.item(0)
+    let middleOfLine = calcMiddlePoint(line)
+    if (isSelectedLeftEditPoint(middleOfLine)){
+        selectedEditPoint.setAttribute("x", mousePosition.x - 10);
+        selectedEditPoint.setAttribute("y", mousePosition.y -5);
+    } else {
+        selectedEditPoint.setAttribute("x", mousePosition.x);
+        selectedEditPoint.setAttribute("y", mousePosition.y - 5);
+    }
+
 }

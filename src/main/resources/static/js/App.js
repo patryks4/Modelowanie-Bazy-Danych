@@ -49,7 +49,6 @@ function createRelation(event,relationType) {
 function createPreviewLine(event) {
     selectedEditPoint = event.target;
     let mainLine =  selectedRelation.lastChild.childNodes.item(0)
-    console.log(mainLine)
     let startPoint = getStartPoint(mainLine)
     let mousePos = getMousePosition(event)
     let previewLine = new PreviewLine(startPoint.x,startPoint.y)

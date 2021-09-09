@@ -125,6 +125,7 @@ function stretchLine(event){
 }
 
 function switchOffStretching(event) {
+    console.log(event.target)
     isStretching = false;
     window.removeEventListener("mousemove",stretchLine)
     window.removeEventListener("mouseup", switchOffStretching);

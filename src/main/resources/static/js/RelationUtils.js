@@ -36,7 +36,8 @@ function reDrawRelation(event) {
     let mousePosition = getMousePosition(event);
     reDrawMainLine(mousePosition)
     redrawEditPoint(mousePosition)
-
+    hideLines()
+    removePreviewLine()
 }
 
 function reDrawMainLine(mousePosition) {
@@ -94,5 +95,15 @@ function redrawEditPoint(mousePosition) {
         selectedEditPoint.setAttribute("x", mousePosition.x);
         selectedEditPoint.setAttribute("y", mousePosition.y - 5);
     }
+}
 
+function hideLines() {
+    let lines = selectedRelation.lastChild.childNodes
+    for (let i = 1; i < lines.length; i++) {
+        lines[i].classList.add("hidden")
+    }
+}
+
+function removePreviewLine() {
+    currentPreviewLine.remove()
 }

@@ -124,8 +124,9 @@ function stretchLine(event){
     }
 }
 
-function switchOffStretching() {
+function switchOffStretching(event) {
     isStretching = false;
     window.removeEventListener("mousemove",stretchLine)
     window.removeEventListener("mouseup", switchOffStretching);
+    reDrawRelation(event)
 }

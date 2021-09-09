@@ -40,7 +40,6 @@ function createHorizontalLine(x,y,width){
     line.setAttribute("y2",y);
     line.classList.add("entity");
     return line;
-
 }
 function createVerticalLine(x,y, height){
     let line = createSVGElement("line");

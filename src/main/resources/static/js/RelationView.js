@@ -39,7 +39,7 @@ class RelationView{
 
     createStretchPoint(offSetX){
         let stretchPoint = createSVGElement('rect');
-        stretchPoint.classList.add("stretch-point","stretchable")
+        stretchPoint.classList.add("stretch-point","stretchable","hidden")
         stretchPoint.setAttribute("x", this.x - offSetX);
         stretchPoint.setAttribute("y", this.y - 5);
         stretchPoint.setAttribute("width", 10);

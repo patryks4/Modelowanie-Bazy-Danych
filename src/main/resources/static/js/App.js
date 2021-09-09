@@ -47,13 +47,15 @@ function createRelation(event,relationType) {
 }
 
 function createPreviewLine(event) {
-    console.log(event.target)
+    selectedEditPoint = event.target;
+    let mainLine =  selectedRelation.lastChild.childNodes.item(0)
+    console.log(mainLine)
+    let startPoint = getStartPoint(mainLine)
     let mousePos = getMousePosition(event)
-    let previewLine = new PreviewLine(mousePos.x,mousePos.y)
+    let previewLine = new PreviewLine(startPoint.x,startPoint.y)
     currentPreviewLine = previewLine.createBody(1)
     document.getElementById("svg-view").appendChild(currentPreviewLine);
     isStretching = true;
-    selectedEditPoint = event.target;
     window.addEventListener("mousemove",stretchLine)
     window.addEventListener("mouseup", switchOffStretching);
 }

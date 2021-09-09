@@ -33,16 +33,16 @@ function hide(element) {
 
 
 function reDrawRelation(event) {
-    let mainLine = selectedRelation.lastChild.childNodes.item(0)
     let mousePosition = getMousePosition(event);
-    reDrawLine(mainLine,mousePosition)
+    reDrawMainLine(mousePosition)
 
 }
 
-function reDrawLine(line,mousePosition,target) {
-    let middleOfLine = Number.parseInt(line.getAttribute("x1") + line.getAttribute("x2"))
+function reDrawMainLine(mousePosition) {
+    let line = selectedRelation.lastChild.childNodes.item(0)
+    let middleOfLine = calcMiddlePoint(line)
     console.log(selectedEditPoint)
-    if (selectedEditPoint.getAttribute("x") - middleOfLine <0){
+    if (isSelectedLeftEditPoint(middleOfLine)){
         line.setAttribute("x1",mousePosition.x);
         line.setAttribute("y1",mousePosition.y);
     } else {
@@ -50,4 +50,34 @@ function reDrawLine(line,mousePosition,target) {
         line.setAttribute("y2",mousePosition.y);
     }
 
+}
+
+function isSelectedLeftEditPoint(middleOfLine){
+    console.log("Result : " + (selectedEditPoint.getAttribute("x") - middleOfLine))
+    return selectedEditPoint.getAttribute("x") - middleOfLine <0
+}
+
+function getStartPoint(line) {
+    let middleOfLine = calcMiddlePoint(line)
+
+    if (isSelectedLeftEditPoint(middleOfLine)){
+        console.log("left point")
+        return {
+            x: line.getAttribute('x2'),
+            y: line.getAttribute('y2')
+        };
+    }else {
+        console.log("right point")
+        return {
+            x: line.getAttribute('x1'),
+            y: line.getAttribute('y1')
+        };
+    }
+}
+
+function calcMiddlePoint(line){
+    console.log("X1:" + Number.parseInt(line.getAttribute("x1")))
+    console.log("X2:" + Number.parseInt(line.getAttribute("x2")))
+    console.log("MIddlr : " + ((Number.parseInt(line.getAttribute("x1")) + Number.parseInt(line.getAttribute("x2"))) / 2))
+    return (Number.parseInt(line.getAttribute("x1")) + Number.parseInt(line.getAttribute("x2"))) / 2
 }

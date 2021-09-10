@@ -45,6 +45,7 @@ function reDrawMainLine(mousePosition,event) {
         let targetX = calcTargetX(event.target)
         redrawLine(targetX,mousePosition.y)
         redrawEditPoint(targetX,mousePosition.y)
+        setRelationData(event.target)
     }else{
         redrawLine(mousePosition.x,mousePosition.y)
         redrawEditPoint(mousePosition.x,mousePosition.y)
@@ -124,4 +125,20 @@ function hideLines() {
 
 function removePreviewLine() {
     currentPreviewLine.remove()
+}
+
+function setRelationData(target){
+    let entity = target.parentNode
+    console.log(entity.id)
+    console.log(selectedRelation)
+    console.log(selectedEditPoint)
+    if (selectedEditPoint.dataset.side === "left") {
+        console.log("TURE")
+        let editedRelation = relations.get(selectedRelation.id)
+        editedRelation.leftSide = entity.id
+    } else{
+        console.log("FALSE")
+        let editedRelation = relations.get(selectedRelation.id)
+        editedRelation.rightSide = entity.id
+    }
 }

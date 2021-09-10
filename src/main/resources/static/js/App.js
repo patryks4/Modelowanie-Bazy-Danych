@@ -50,7 +50,8 @@ function createRelation(event,relationType) {
     let relation = relationView.createBody();
     document.getElementById("svg-view").appendChild(relation);
     relation.addEventListener('dblclick',changeVisibility)
-    relations.set(key, relation);
+    let relationData = new Relation(key,relationType)
+    relations.set(key, relationData);
     makeDraggable(relation);
 }
 

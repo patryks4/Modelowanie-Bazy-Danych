@@ -75,9 +75,11 @@ function getDataFromEntities() {
         relations: relationsList
     }
     console.log(schema)
+    console.log(JSON.stringify(schema))
+    sendSchema(schema)
 }
 function getDataFromEntityView(viewId,numberOfRows){
-    let tableName =  new Entity(getTableName(viewId))
+    let tableName =  getTableName(viewId)
     let entity =  new Entity(tableName)
     for (let i = 0; i < numberOfRows; i++) {
         entity.addRow(getTableRow(viewId,i))
@@ -104,11 +106,11 @@ function getTableRow(viewId,rowNumber){
     }
 }
 
-function sendSchema () {
+function sendSchema (schema) {
     let send = new XMLHttpRequest();
     send.open('POST', '/test/schema', true);
     send.setRequestHeader("Content-Type", "application/json");
-    send.send(JSON.stringify(playerInfo));
+    send.send(JSON.stringify(schema));
     send.onload = function () {
         if(send.status )
         {

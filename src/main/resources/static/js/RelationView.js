@@ -10,9 +10,10 @@ class RelationView{
 
     createBody() {
         let relationGroup = createSVGElement("g");
+        relationGroup.id = this.relationId;
         let movingField = createSVGElement('rect');
-        let leftEditPoint = this.createStretchPoint(10)
-        let rightEditPoint = this.createStretchPoint(-this.width)
+        let leftEditPoint = this.createStretchPoint(10,"left")
+        let rightEditPoint = this.createStretchPoint(-this.width,"right")
         movingField.setAttribute("x", this.x);
         movingField.setAttribute("y", this.y - 25);
         movingField.setAttribute("width", this.width);
@@ -37,13 +38,14 @@ class RelationView{
         return relationGroup;
     }
 
-    createStretchPoint(offSetX){
+    createStretchPoint(offSetX,side){
         let stretchPoint = createSVGElement('rect');
         stretchPoint.classList.add("stretch-point","stretchable","hidden")
         stretchPoint.setAttribute("x", this.x - offSetX);
         stretchPoint.setAttribute("y", this.y - 5);
         stretchPoint.setAttribute("width", 10);
         stretchPoint.setAttribute("height", 10);
+        stretchPoint.dataset.side = side;
         stretchPoint.addEventListener("mousedown", createPreviewLine);
         return stretchPoint;
     }

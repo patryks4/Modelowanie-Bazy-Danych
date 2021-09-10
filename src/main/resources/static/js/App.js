@@ -8,6 +8,7 @@ let selectedText;
 let isStretching = false;
 let currentPreviewLine;
 let selectedRelation;
+let relations = new Map
 function createSVGElement(name) {
     return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
@@ -38,11 +39,18 @@ function createEntity(event) {
 }
 
 function createRelation(event,relationType) {
+    let key = "relation-0";
+    let relationNumber = 0;
+    while (relations.has(key)) {
+        relationNumber++;
+        key = "relation-" + relationNumber;
+    }
     let position = getMousePosition(event);
-    let relationView = new RelationView(position.x, position.y,relationType, "relation-0");
+    let relationView = new RelationView(position.x, position.y,relationType, key);
     let relation = relationView.createBody();
     document.getElementById("svg-view").appendChild(relation);
     relation.addEventListener('dblclick',changeVisibility)
+    relations.set(key, relation);
     makeDraggable(relation);
 }
 

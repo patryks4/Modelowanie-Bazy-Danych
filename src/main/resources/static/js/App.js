@@ -17,6 +17,10 @@ function init() {
     addRowButton.addEventListener("click" ,function (){
         selectedEntity.addRow();
     });
+    let getSqlButton = document.getElementById("getSql");
+    getSqlButton.addEventListener("click", function (){
+        getDataFromEntities()
+    })
     let dragElements = document.querySelectorAll(".side-img");
     dragElements.forEach(element => element.addEventListener("mousedown", switchOnMoving));
     window.addEventListener("mousemove", moveImg);

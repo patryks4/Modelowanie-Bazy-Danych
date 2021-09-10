@@ -60,3 +60,59 @@ function createDiagonalLine(x1,y1,x2,y2){
     line.classList.add("line");
     return line;
 }
+
+function getDataFromEntities() {
+    let entitiesData = [];
+    for (let value of entitiesMap.values()) {
+        console.log(value.entityInfo.entityViewId)
+       let entity = getDataFromEntityView(value.entityInfo.entityViewId,Number.parseInt(value.entityInfo.numberOfRows))
+        console.log(entity)
+        entitiesData.push(entity)
+    }
+    let relationsList = mapToArray(relations)
+    let schema = {
+        entities: entitiesData,
+        relations: relationsList
+    }
+    console.log(schema)
+}
+function getDataFromEntityView(viewId,numberOfRows){
+    let tableName =  new Entity(getTableName(viewId))
+    let entity =  new Entity(tableName)
+    for (let i = 0; i < numberOfRows; i++) {
+        entity.addRow(getTableRow(viewId,i))
+    }
+    return entity;
+}
+
+function getTableName(viewId) {
+    return document.getElementById(viewId+"-name-0").textContent
+}
+
+function getTableRow(viewId,rowNumber){
+    let entityKey;
+    if (document.getElementById(viewId + "-key-" + rowNumber).textContent === "PK") {
+        entityKey = true;
+    }else {
+        entityKey = false;
+    }
+
+    return{
+        key: entityKey,
+        name: document.getElementById(viewId + "-attr-name-" + rowNumber).textContent,
+        type: document.getElementById(viewId + "-attr-type-" + rowNumber).textContent
+    }
+}
+
+function sendSchema () {
+    let send = new XMLHttpRequest();
+    send.open('POST', '/test/schema', true);
+    send.setRequestHeader("Content-Type", "application/json");
+    send.send(JSON.stringify(playerInfo));
+    send.onload = function () {
+        if(send.status )
+        {
+            console.log(send.responseText) ;
+        }
+    };
+}

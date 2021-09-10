@@ -142,3 +142,11 @@ function setRelationData(target){
         editedRelation.rightSide = entity.id
     }
 }
+
+function mapToArray(map) {
+    let dataArray = []
+    for (let value of map.values()) {
+        dataArray.push(value)
+    }
+    return dataArray;
+}

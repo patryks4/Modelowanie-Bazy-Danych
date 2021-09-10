@@ -11,6 +11,7 @@ class RelationView{
     createBody() {
         let relationGroup = createSVGElement("g");
         relationGroup.id = this.relationId;
+        relationGroup.dataset.relationType = this.relationType;
         let movingField = createSVGElement('rect');
         let leftEditPoint = this.createStretchPoint(10,"left")
         let rightEditPoint = this.createStretchPoint(-this.width,"right")

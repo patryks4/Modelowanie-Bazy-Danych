@@ -38,7 +38,7 @@ function createHorizontalLine(x,y,width){
     line.setAttribute("y1",y);
     line.setAttribute("x2",x+width);
     line.setAttribute("y2",y);
-    line.classList.add("entity");
+    line.classList.add("line");
     return line;
 }
 function createVerticalLine(x,y, height){
@@ -47,7 +47,7 @@ function createVerticalLine(x,y, height){
     line.setAttribute("y1",y);
     line.setAttribute("x2",x);
     line.setAttribute("y2", y - height);
-    line.classList.add("entity");
+    line.classList.add("line");
     return line;
 }
 
@@ -57,6 +57,6 @@ function createDiagonalLine(x1,y1,x2,y2){
     line.setAttribute("y1",y1);
     line.setAttribute("x2",x2);
     line.setAttribute("y2", y2);
-    line.classList.add("entity");
+    line.classList.add("line");
     return line;
 }

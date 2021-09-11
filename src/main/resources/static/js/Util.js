@@ -69,7 +69,7 @@ function getDataFromEntities() {
         console.log(entity)
         entitiesData.push(entity)
     }
-    let relationsList = mapToArray(relations)
+    let relationsList = setTableNameInRelation()
     let schema = {
         entities: entitiesData,
         relations: relationsList
@@ -115,6 +115,26 @@ function sendSchema (schema) {
         if(send.status )
         {
             console.log(send.responseText) ;
+            createWindowWithSQL(send.responseText)
+
         }
     };
+}
+
+function setTableNameInRelation() {
+    let relationsList = mapToArray(relations)
+    for (let relation of relationsList) {
+        relation.leftSideTable =  getTableName(relation.leftSide);
+        relation.rightSideTable =  getTableName(relation.rightSide);
+    }
+    return relationsList
+}
+
+function createWindowWithSQL(sql) {
+    let sqlWindow = document.getElementById("sqlScript");
+    sqlWindow.classList.remove("hidden");
+    let content = document.createElement("p");
+    content.textContent = sql;
+    sqlWindow.appendChild(content)
+    
 }

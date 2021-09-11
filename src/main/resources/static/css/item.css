@@ -1,0 +1,17 @@
+.entity-name {
+    fill: white;
+    stroke-width: 3;
+    stroke: black;
+
+}
+
+.dragging-item {
+    height: 50px;
+    width: 100px;
+    background: none;
+    border: 2px black dotted;
+    position: absolute;
+    display: none;
+
+}
+
